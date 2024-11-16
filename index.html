@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta tags remain the same -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:title" content="Hello Kitty">
@@ -17,30 +18,32 @@
             margin: 0; /* Remove default margin */
         }
 
-        /* Set the body background to black and text to green */
+        /* Set the body background to black and text to desired color */
         body {
             font-family: monospace; /* Ensures ASCII art displays properly */
             background-color: #000; /* Black background */
-            color: #EF7DA8; /* Green text */
+            color: #EF7DA8; /* Text color */
             display: flex;
             justify-content: center; /* Centers the content horizontally */
             align-items: center; /* Centers the content vertically */
-            text-align: center; /* Centers the text */
             padding: 0; /* Remove any padding */
             font-size: 24px; /* Increase text size */
             line-height: 1.09; /* Adjust line height for readability */
+            /* Removed text-align: center to prevent centering text inside elements */
         }
 
-        /* Preserve formatting for the ASCII art */
+        /* Preserve formatting for the ASCII art and left-align text */
         pre {
-            white-space: pre-wrap; /* Preserves the ASCII art formatting */
-            word-wrap: break-word;
+            white-space: pre; /* Preserves spaces and line breaks exactly as in the ASCII art */
             margin: 0; /* Removes any margin around the pre tag */
+            text-align: left; /* Left-aligns text inside the pre element */
         }
     </style>
 </head>
 <body>
-    <pre>
+    <pre id="Kitty"></pre>
+    <script>
+        const kitty = `
 ⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀
 ⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀
 ⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀
@@ -85,7 +88,26 @@
 ⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀
 ⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀
 ⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀
-⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀
-    </pre>
+⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀`.trim();
+        let currentChar = 0;
+
+        function typingAnimation() {
+            const asciiElement = document.getElementById('Kitty');
+            const char = kitty[currentChar];
+            asciiElement.textContent += char;
+            currentChar++;
+
+            if (currentChar < kitty.length) {
+                if (char === ' ' || char === '\n') {
+                    // If the character is a space or a newline, display it immediately without delay
+                    typingAnimation();
+                } else {
+                    setTimeout(typingAnimation, 5); // Adjust speed as needed
+                }
+            }
+        }
+
+        typingAnimation();
+    </script>
 </body>
 </html>
