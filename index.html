@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Meta tags remain the same -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,10 +39,20 @@
             margin: 0; /* Removes any margin around the pre tag */
             text-align: left; /* Left-aligns text inside the pre element */
         }
+        #sillyButton {
+            margin-top: 20px; /* Add space between ASCII art and button */
+            display: none; /* Initially hide the button */
+            padding: 10px 20px; /* Button padding */
+            background-color: #EF7DA8; /* Button color */
+            color: #000; /* Text color */
+            border: none; /* Remove border */
+            cursor: pointer; /* Show hand cursor on hover */
+        }
     </style>
 </head>
 <body>
     <pre id="Kitty"></pre>
+    <button id="sillyButton">Click here to get annoyed >~< :3</button>
     <script>
         const kitty = `
 ⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀⡀
@@ -104,8 +115,16 @@
                 } else {
                     setTimeout(typingAnimation, 5); // Adjust speed as needed
                 }
+            } else {
+                document.getElementById('sillyButton').style.display = 'block'; // Show the button
             }
         }
+
+        $(document).ready(function() {
+            $('#sillyButton').click(function() {
+                window.location.href = 'https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=https://www.google.com/search?q=site:vilewi.red';
+            });
+        });
 
         typingAnimation();
     </script>
